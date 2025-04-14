@@ -1,0 +1,10 @@
+{
+  "name": "bitter/visual_tips",
+  "type": "concrete5-package",
+  "description": "Create responsive slideshows with images and videos, supporting multiple video formats.",
+  "autoload": {
+    "psr-4": {
+      "Bitter\\VisualTips\\": "src/Bitter/VisualTips"
+    }
+  }
+}
