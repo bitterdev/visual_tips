@@ -9,8 +9,8 @@ use Concrete\Core\Error\ErrorList\ErrorList;
 class Controller extends BlockController
 {
     protected $btTable = 'btVisualTips';
-    protected $btInterfaceWidth = 400;
-    protected $btInterfaceHeight = 500;
+    protected $btInterfaceWidth = "800";
+    protected $btInterfaceHeight = "700";
     protected $btCacheBlockOutputLifetime = 300;
 
     public function getBlockTypeDescription(): string
@@ -21,6 +21,13 @@ class Controller extends BlockController
     public function getBlockTypeName(): string
     {
         return t("Visual Tips");
+    }
+
+    public function registerViewAssets($outputContent = '')
+    {
+        parent::registerViewAssets($outputContent);
+
+        $this->requireAsset("javascript", "bootstrap");
     }
 
     public function view()
@@ -81,7 +88,7 @@ class Controller extends BlockController
                 /** @noinspection PhpUnhandledExceptionInspection */
                 /** @noinspection SqlDialectInspection */
                 /** @noinspection SqlNoDataSourceInspection */
-                $db->executeQuery("INSERT INTO btVisualTipsItems (bID, x, y, body) VALUES (?, ?, ?, ??)", [
+                $db->executeQuery("INSERT INTO btVisualTipsItems (bID, x, y, body) VALUES (?, ?, ?, ?)", [
                     $this->bID,
                     isset($item["x"]) && !empty($item["x"]) ? (int)$item["x"] : null,
                     isset($item["y"]) && !empty($item["y"]) ? (int)$item["y"] : null,

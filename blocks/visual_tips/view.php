@@ -2,33 +2,35 @@
 
 defined('C5_EXECUTE') or die('Access denied');
 
+use Concrete\Core\Entity\File\Version;
+use Concrete\Core\File\File;
+use Concrete\Core\Entity\File\File as FileEntity;
+
+/** @var int $fID */
+/** @var array $items */
+
+$imageUrl = null;
+$imageAltText = null;
+
+$f = File::getByID($fID);
+
+if ($f instanceof FileEntity) {
+    $fv = $f->getApprovedVersion();
+
+    if ($fv instanceof Version) {
+        $imageUrl = $fv->getURL();
+        $imageAltText = $fv->getTitle();
+    }
+}
 ?>
 
 <div class="image-container">
-    <img src="https://via.placeholder.com/600x400" alt="Placeholder Image">
+    <img src="<?php echo h($imageUrl); ?>" alt="<?php echo h($imageAltText); ?>">
 
-    <div class="hotspot-wrapper" style="top: 30%; left: 40%; position: absolute;">
-        <div class="hotspot bg-primary"></div>
-        <div class="tooltip-custom">Primary Info Point</div>
-    </div>
-
-    <div class="hotspot-wrapper" style="top: 60%; left: 70%; position: absolute;">
-        <div class="hotspot bg-success"></div>
-        <div class="tooltip-custom">Success Info Point</div>
-    </div>
-
-    <div class="hotspot-wrapper" style="top: 20%; left: 75%; position: absolute;">
-        <div class="hotspot bg-danger"></div>
-        <div class="tooltip-custom">Danger Info Point</div>
-    </div>
-
-    <div class="hotspot-wrapper" style="top: 50%; left: 20%; position: absolute;">
-        <div class="hotspot bg-warning"></div>
-        <div class="tooltip-custom">Warning Info Point</div>
-    </div>
-
-    <div class="hotspot-wrapper" style="top: 80%; left: 50%; position: absolute;">
-        <div class="hotspot bg-info"></div>
-        <div class="tooltip-custom">Info Info Point</div>
-    </div>
+    <?php foreach ($items as $item) { ?>
+        <div class="hotspot"
+             data-bs-toggle="tooltip" data-bs-placement="top" title="<?php echo h($item["body"]); ?>"
+             style="top: <?php echo (int)$item["y"] ?? 0 ?>%; left: <?php echo (int)$item["x"] ?? 0 ?>%; position: absolute;">
+        </div>
+    <?php } ?>
 </div>

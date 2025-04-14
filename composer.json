@@ -1,7 +1,7 @@
 {
   "name": "bitter/visual_tips",
   "type": "concrete5-package",
-  "description": "Create responsive slideshows with images and videos, supporting multiple video formats.",
+  "description": "Add interactive tooltips to any image with pinpoint accuracy.",
   "autoload": {
     "psr-4": {
       "Bitter\\VisualTips\\": "src/Bitter/VisualTips"
