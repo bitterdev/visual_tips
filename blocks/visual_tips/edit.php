@@ -22,6 +22,9 @@ $form = $app->make(Form::class);
 
 /** @noinspection PhpUnhandledExceptionInspection */
 View::element("dashboard/help_blocktypes", [], "visual_tips");
+
+/** @noinspection PhpUnhandledExceptionInspection */
+View::element("dashboard/did_you_know", [], "visual_tips");
 ?>
 
 <div class="form-group">
